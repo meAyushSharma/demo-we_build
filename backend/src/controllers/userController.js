@@ -2,6 +2,7 @@ const userSchema = require("./../models/userModel");
 const bcrypt = require("bcrypt");
 const jwtToken = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 const secretKey = "AKST";
 const signin = async (req, res) => {
@@ -12,17 +13,22 @@ const signin = async (req, res) => {
 
   console.log("here at signin");
   const token = req.cookies.token;
-  console.log("here token from auth, signin", token);
-  const decoded = jwtToken.verify(token, secretKey);
-  const email = decoded.email;
-  const id = decoded.id;
-  console.log("decoded here: ", decoded);
-  const ifExists = await userSchema.findOne({ email: email, _id: id });
-  console.log("ifexists here: ", ifExists);
-  if (ifExists) {
-    res.status(201).json({
-      msg: "welcome back",
-    });
+  if (token) {
+    console.log("here token from auth, signin", token);
+    const decoded = jwtToken.verify(token, secretKey);
+    const email = decoded.email;
+    const id = decoded.id;
+    console.log("decoded here: ", decoded);
+    const ifExists = await userSchema.findOne({ email: email, _id: id });
+    console.log("ifexists here: ", ifExists);
+    if (ifExists) {
+      res.status(201).json({
+        msg: "welcome back",
+      });
+    }
+  } else {
+    // forward to signin page
+    res.sendFile("SignIn.html", { root: path.join(__dirname, "public") });
   }
 };
 
@@ -58,11 +64,6 @@ const signup = async (req, res) => {
       console.log("setting cookie");
       res.cookie("token", token);
       res.send("cookie has been set");
-      // res.setHeader("Authorization", `Bearer ${token}`);
-      // res.status(201).json({
-      //   result: resultUser,
-      //   token: token,
-      // });
     }
   } catch (error) {
     console.log("error is: ", error);
@@ -72,4 +73,13 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { signin, signup };
+const signinGet = (req, res) => {
+  // res.sendFile("index.html", {
+  //   root: path.join(__dirname, "../../../frontend/main"),
+  // });
+  const filePath = path.join(__dirname, "../../frontend/main/index.html");
+  console.log("Resolved path:", filePath);
+  res.sendFile(filePath);
+};
+
+module.exports = { signin, signup, signinGet };

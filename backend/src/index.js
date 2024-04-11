@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const jwt = require("jsonwebtoken");
-// const path = require("path");
+const path = require("path");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 
@@ -16,10 +16,17 @@ app.use(cookieParser());
 app.use(express.json());
 const port = process.env.PORT || 5126;
 
+
+app.use(express.static(path.join(__dirname, '../../frontend')));
+
 app.use("/users", userRouter);
 app.use("/organizations", organizationRouter);
 app.use("/sellers", sellerRouter);
 
+console.log(path.join(__dirname, '../../frontend'));
+// app.get("/", (req,res)=>{
+//   res.sendFile("index.html", { root: path.join(__dirname, "main") });
+// })
 mongoose
   .connect(process.env.mongoose_string)
   .then(() => {
