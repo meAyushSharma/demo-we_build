@@ -3,6 +3,13 @@ const bcrypt = require("bcrypt");
 const jwtToken = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const express = require("express");
+const app = require("../index");
+
+const frontendPath = `/mnt/c/Users/ayush/OneDrive/code_related/Hackathons/demo-we_build/frontend/main`;
+const frontendPathSignin = `/mnt/c/Users/ayush/OneDrive/code_related/Hackathons/demo-we_build/frontend/public/SignIn`;
+app.use(express.static(frontendPath));
+app.use(express.static(frontendPathSignin));
 
 const secretKey = "AKST";
 const signin = async (req, res) => {
@@ -28,7 +35,9 @@ const signin = async (req, res) => {
     }
   } else {
     // forward to signin page
-    res.sendFile("SignIn.html", { root: path.join(__dirname, "public") });
+    const signinPath = path.join(frontendPathSignin, "signIn.html");
+    res.sendFile(signinPath);
+    // res.sendFile("SignIn.html", { root: path.join(__dirname, "public") });
   }
 };
 
@@ -73,13 +82,13 @@ const signup = async (req, res) => {
   }
 };
 
-const signinGet = (req, res) => {
-  // res.sendFile("index.html", {
-  //   root: path.join(__dirname, "../../../frontend/main"),
-  // });
-  const filePath = path.join(__dirname, "../../frontend/main/index.html");
-  console.log("Resolved path:", filePath);
-  res.sendFile(filePath);
+const signinget = (req, res) => {
+  const indexPath = path.join(frontendPath, "index.html");
+  res.sendFile(indexPath);
 };
 
-module.exports = { signin, signup, signinGet };
+const signupget = (req, res) => {
+  res.send;
+};
+
+module.exports = { signin, signup, signinget, signupget };
