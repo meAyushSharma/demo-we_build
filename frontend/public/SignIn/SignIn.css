@@ -1,0 +1,76 @@
+.signin-header h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgba(6, 1, 1, 0.881);
+    font-size: 30px;
+    font-weight: bolder;
+    width:400px;
+    position: relative;
+    top:30px;
+}
+
+
+.inner-box{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2.8rem;
+    position: relative;
+    border:5px solid rgb(239, 244, 247);
+    background-color: aliceblue;
+    top:0%;
+    left:5px;
+    padding: 20px 40px;
+    width:350px;
+    height:533px;
+    border-radius: 20px;
+}
+hr{
+   border: 1px solid black;
+   position: relative;
+   top:5px;
+}
+.enteremail{
+    width:250px;
+    height: 35px;
+    border:2px solid rgb(37, 34, 34);
+    border-radius:10px;
+    margin-left: 40px;
+    margin-top: 80px;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+.enterpass{
+    width:250px;
+    height: 35px;
+    border:2px solid rgb(37, 34, 34);
+    border-radius:10px;
+    margin-left: 40px;
+    margin-top: 0px;
+    background-color: rgb(236, 235, 232);
+}
+.email {
+    position:relative;
+    top:90px;
+    left:45px;
+    font-size:1.2rem;
+}
+.sumbit{
+    width:250px;
+    height: 35px;
+    border:2px solid rgb(37, 34, 34);
+    border-radius:10px;
+    margin-left: 43px;
+    margin-top: 0px;
+    background-color: rgb(38, 93, 130);
+}
+.sumbit:hover{
+    cursor: pointer;
+}
+img {
+    float: right;
+    left:600px;
+    width:750px;
+    height: 575px;
+    border-radius: 10px;
+    border: 2px solid rgb(231, 227, 227);
+}
+
