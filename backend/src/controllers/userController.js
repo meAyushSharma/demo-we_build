@@ -45,6 +45,7 @@ const signup = async (req, res) => {
   // token generation
   console.log("i am here");
   const { username, email, password } = req.body;
+  console.log(req.body);
   try {
     const existingUser = await userSchema.findOne({ email: email });
     if (existingUser) {

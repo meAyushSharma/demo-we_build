@@ -15,7 +15,8 @@ app.use(cookieParser());
 app.use(express.json());
 const port = process.env.PORT || 5126;
 
-
+const bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/users", userRouter);
 app.use("/organizations", organizationRouter);
