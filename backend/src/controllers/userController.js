@@ -3,13 +3,13 @@ const bcrypt = require("bcrypt");
 const jwtToken = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const path = require("path");
-const express = require("express");
-const app = require("../index");
+// const express = require("express");
+// const app = express();
 
-const frontendPath = `/mnt/c/Users/ayush/OneDrive/code_related/Hackathons/demo-we_build/frontend/main`;
-const frontendPathSignin = `/mnt/c/Users/ayush/OneDrive/code_related/Hackathons/demo-we_build/frontend/public/SignIn`;
-app.use(express.static(frontendPath));
-app.use(express.static(frontendPathSignin));
+// const frontendPath = `/mnt/c/Users/ayush/OneDrive/code_related/Hackathons/demo-we_build/frontend/main`;
+// const frontendPathSignin = `/mnt/c/Users/ayush/OneDrive/code_related/Hackathons/demo-we_build/frontend/public/SignIn`;
+// app.use(express.static(frontendPath));
+// app.use(express.static(frontendPathSignin));
 
 const secretKey = "AKST";
 const signin = async (req, res) => {
@@ -34,10 +34,7 @@ const signin = async (req, res) => {
       });
     }
   } else {
-    // forward to signin page
-    const signinPath = path.join(frontendPathSignin, "signIn.html");
-    res.sendFile(signinPath);
-    // res.sendFile("SignIn.html", { root: path.join(__dirname, "public") });
+    res.send("some error occured");
   }
 };
 
@@ -72,7 +69,7 @@ const signup = async (req, res) => {
       );
       console.log("setting cookie");
       res.cookie("token", token);
-      res.send("cookie has been set");
+      res.send(resultUser);
     }
   } catch (error) {
     console.log("error is: ", error);
