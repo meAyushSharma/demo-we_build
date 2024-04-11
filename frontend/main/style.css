@@ -95,7 +95,9 @@ header{
 }
 .link a:hover{
    color: var(--white);
+   cursor: pointer;
 }
+
 .header_container{
     display: flex;
     align-items: center;
