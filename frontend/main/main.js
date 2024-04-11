@@ -17,3 +17,5 @@ document.addEventListener("DOMContentLoaded", async function () {
 function renderName(name) {
   document.getElementById("name-here").innerText = name;
 }
+
+
